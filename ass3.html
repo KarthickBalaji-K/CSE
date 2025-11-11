@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>E-Commerce Portal</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .products {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .item {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #357ab8;
+    }
+
+    form {
+      max-width: 300px;
+      margin: auto;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      text-align: center;
+      background: #f1f1f1;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header and Navigation -->
+  <header>
+    <h1>My E-Commerce Portal</h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('products')">Products</a></li>
+        <li><a href="#" onclick="showSection('login')">Login</a></li>
+        <li><a href="#" onclick="showSection('register')">Register</a></li>
+        <li><a href="#" onclick="showSection('about')">About Us</a></li>
+        <li><a href="#" onclick="showSection('contact')">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sections -->
+  <section id="home">
+    <h2>Welcome to Our Store!</h2>
+    <p style="text-align:center;">Shop the best products at affordable prices. Explore electronics, fashion, and more!</p>
+  </section>
+
+  <section id="products" class="hidden">
+    <h2>Our Products</h2>
+    <div class="products">
+      <div class="item">
+        <h3>Smartphone</h3>
+        <p>Price: ₹25,000</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+      <div class="item">
+        <h3>Headphones</h3>
+        <p>Price: ₹2,000</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+      <div class="item">
+        <h3>Laptop</h3>
+        <p>Price: ₹55,000</p>
+        <button>Add to Cart</button>
+        <button>Add to Wishlist</button>
+      </div>
+    </div>
+
+    <div style="margin-top:30px;">
+      <h3>Customer Reviews</h3>
+      <p>⭐ Excellent service and quick delivery!</p>
+      <p>⭐ Great product quality!</p>
+      <p>⭐ Would definitely recommend!</p>
+    </div>
+
+    <div style="margin-top:20px;">
+      <h3>Customer Care & Reporting</h3>
+      <p>Need help? Contact support@shop.com</p>
+      <p>Report an issue through the Contact Us page.</p>
+    </div>
+  </section>
+
+  <section id="login" class="hidden">
+    <h2>User Login</h2>
+    <form onsubmit="return validateLogin()">
+      <label>Email:</label>
+      <input type="email" id="loginEmail" required>
+
+      <label>Password:</label>
+      <input type="password" id="loginPassword" required>
+
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <section id="register" class="hidden">
+    <h2>User Registration</h2>
+    <form onsubmit="return validateRegister()">
+      <label>Username:</label>
+      <input type="text" id="username" required>
+
+      <label>Email:</label>
+      <input type="email" id="email" required>
+
+      <label>Password:</label>
+      <input type="password" id="password" required>
+
+      <label>Confirm Password:</label>
+      <input type="password" id="confirmPassword" required>
+
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <section id="about" class="hidden">
+    <h2>About Us</h2>
+    <p style="text-align:center;">We are a new online shopping platform offering top-quality products at reasonable prices.</p>
+  </section>
+
+  <section id="contact" class="hidden">
+    <h2>Contact Us</h2>
+    <p style="text-align:center;">Email: support@shop.com | Phone: +91 98765 43210</p>
+    <p style="text-align:center;">We’re here to help you 24/7!</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 My E-Commerce Portal | All Rights Reserved</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function validateRegister() {
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long!");
+        return false;
+      }
+
+      alert("Registration Successful!");
+      showSection('login');
+      return false; // prevent actual form submission
+    }
+
+    function validateLogin() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      if (email === "" || password === "") {
+        alert("Please fill in all fields!");
+        return false;
+      }
+
+      alert("Login Successful!");
+      showSection('products');
+      return false;
+    }
+  </script>
+
+</body>
+</html>
